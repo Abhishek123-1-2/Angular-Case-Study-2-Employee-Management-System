@@ -1,0 +1,65 @@
+
+
+.container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.text-danger {
+    color: #dc3545; /* Red color for validation errors */
+    font-size: 14px;
+}
+
+.input-group-text {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.input-group-text i {
+    color: #dc3545; /* Red color for the exclamation mark */
+    font-size: 16px;
+    position: relative;
+    top: 1px;
+    left: 4px;
+}
+
+

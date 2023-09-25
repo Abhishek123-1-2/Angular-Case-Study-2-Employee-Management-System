@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Custom CSS for red exclamation marks */
+        .input-group-append .text-danger {
+            color: red;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form action="/submit-employee" method="post" [formGroup]="loginForm">
+                    <h2 class="text-center mb-4">Employee Information</h2>
+
+                    <!-- First Name and Last Name in one row -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">First Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="First Name" [(ngModel)]="employeeObj.first_name">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-exclamation-circle" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="text-danger">
+                                <div *ngIf="firstName.hasError('required')">First Name is required</div>
+                                <div *ngIf="firstName.hasError('minlength')">First Name Minimum Length is 3</div>
+                                <div *ngIf="firstName.hasError('pattern')">First Name must start with an uppercase letter and contain only alphabets</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Last Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Last Name" [(ngModel)]="employeeObj.last_name">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-exclamation-circle" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="text-danger">
+                                <div *ngIf="lastName.hasError('required')">Last Name is required</div>
+                                <div *ngIf="lastName.hasError('minlength')">Last Name Minimum Length is 5</div>
+                                <div *ngIf="lastName.hasError('pattern')">Last Name must start with an uppercase letter and contain only alphabets</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Number and Email in one row -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="contactNo">Contact Number</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="contactNo" formControlName="contactNo" placeholder="Contact Number" [(ngModel)]="employeeObj.contact_no">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-exclamation-circle" *ngIf="contactNo.invalid && (contactNo.dirty || contactNo.touched)"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div *ngIf="contactNo.invalid && (contactNo.dirty || contactNo.touched)" class="text-danger">
+                                <div *ngIf="contactNo.hasError('required')">Contact Number is required</div>
+                                <div *ngIf="contactNo.hasError('minlength')">Contact Number Minimum Length is 10</div>
+                                <div *ngIf="contactNo.hasError('pattern')">Contact Number must have 10 digits</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="email">Email</label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" [(ngModel)]="employeeObj.email">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-exclamation-circle" *ngIf="email.invalid && (email.dirty || email.touched)"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                                <div *ngIf="email.hasError('required')">Email is required</div>
+                                <div *ngIf="email.hasError('email')">Enter a valid email address</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date of Birth and Address in one row -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="dob">Date of Birth</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control" id="dob" formControlName="dob" [(ngModel)]="employeeObj.dob">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-exclamation-circle" *ngIf="dob.invalid && (dob.dirty || dob.touched)"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="text-danger">
+                                <div *ngIf="dob.hasError('required')">DOB is required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="address">Address</label>
+                            <textarea class="form-control" id="address" formControlName="address" placeholder="Address" rows="3" [(ngModel)]="employeeObj.address"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Employee ID -->
+                    <div class="form-group">
+                        <label for="id">Employee ID</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="id" formControlName="id" placeholder="Employee ID" [(ngModel)]="employeeObj.emp_id">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fas fa-exclamation-circle" *ngIf="id.invalid && (id.dirty || id.touched)"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div *ngIf="id.invalid && (id.dirty || id.touched)" class="text-danger">
+                            <div *ngIf="id.hasError('required')">ID is required</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid" (click)="onSubmit()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2nd Component for Table is added here -->
+     <div class="container mt-5">
+        <h2 class="text-center">Employee List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Contact Number</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr *ngFor="let employee of employeeData">
+                    <td>{{ employee.emp_id }}</td>
+                    <td>{{ employee.first_name }}</td>
+                    <td>{{ employee.last_name }}</td>
+                    <td>{{ employee.contact_no }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.dob }}</td>
+                    <td>{{ employee.address }}</td>
+                    <td>
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-primary btn-sm" (click)="select(employee)">
+                                <i class="fas fa-eye"></i> 
+                            </button>
+                        </div>
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-warning btn-sm" (click)="updateEmployee()">
+                                <i class="fas fa-pencil-alt"></i> 
+                            </button>
+                        </div>
+                        <div class="btn-block">
+                            <button type="button" class="btn btn-danger btn-sm" (click)="deleteEmployee()">
+                                <i class="fas fa-trash"></i> 
+                            </button>
+                        </div>
+                    </td>
+                    
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

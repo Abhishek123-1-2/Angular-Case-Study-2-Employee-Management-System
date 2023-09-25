@@ -1,0 +1,69 @@
+<!-- <div>
+    <h2>Welcome</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Contact No</th>
+          <th>Email</th>
+          <th>Date of Birth</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employeeData">
+          <td>{{ employee.emp_id }}</td>
+          <td>{{ employee.first_name }}</td>
+          <td>{{ employee.last_name }}</td>
+          <td>{{ employee.contact_no }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.dob }}</td>
+          <td>{{ employee.address }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+  <div class="container mt-4">
+    <h2>Welcome, {{ userData.first_name }} {{ userData.last_name }}</h2>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Contact No</th>
+          <th>Email</th>
+          <th>Date of Birth</th>
+          <th>Address</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ userData.first_name }}</td>
+          <td>{{ userData.last_name }}</td>
+          <td>{{ userData.contact_no }}</td>
+          <td>{{ userData.email }}</td>
+          <td>{{ userData.dob }}</td>
+          <td>{{ userData.address }}</td>
+         
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="logout()">Logout</button>
+  <!-- <div *ngIf="userData">
+    <h2>Welcome, {{ userData.first_name }} {{ userData.last_name }}</h2>
+    <p>Contact No: {{ userData.contact_no }}</p>
+    <p>Email: {{ userData.email }}</p>
+    <p>Date of Birth: {{ userData.dob }}</p>
+    <p>Address: {{ userData.address }}</p>
+     Add more properties as needed -->
+  <!-- </div>
+  
+  <div *ngIf="!userData">
+    <p>Loading user data...</p>
+  </div> --> 
+  

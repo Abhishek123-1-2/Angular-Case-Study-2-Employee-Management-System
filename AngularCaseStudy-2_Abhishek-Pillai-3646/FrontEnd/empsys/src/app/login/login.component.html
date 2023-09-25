@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Add custom styles for validation icons */
+        .form-control-feedback {
+            position: absolute;
+            top: 0;
+            right: 0;
+            pointer-events: none;
+        }
+        .input-group-append .text-danger {
+    color: red;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px; /* Adjust the font size as needed */
+}
+
+/* Style for the exclamation mark icon */
+.input-group-append .input-group-text .fas.fa-exclamation-circle {
+    color: red;
+    font-size: 14px; /* Adjust the font size as needed */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form [formGroup]="loginForm" >
+                    <h2 class="text-center">Login</h2>
+                    <div class="form-group">
+                        <label for="UserName">Username</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="UserName" formControlName="UserName" name="UserName" placeholder="Enter your Username" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fas fa-exclamation-circle form-control-feedback" *ngIf="loginForm.get('UserName').invalid && loginForm.get('UserName').touched"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div *ngIf="loginForm.get('UserName').invalid && loginForm.get('UserName').touched" class="text-danger">
+                            <ng-container *ngIf="loginForm.get('UserName').hasError('required')">Username is required</ng-container>
+                            <ng-container *ngIf="loginForm.get('UserName').hasError('minlength')">Username Minimum Length is {{ loginForm.get('UserName').getError('minlength').requiredLength }}</ng-container>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="Password">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="Password" formControlName="Password" name="Password" placeholder="Enter your Password" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fas fa-exclamation-circle form-control-feedback" *ngIf="loginForm.get('Password').invalid && loginForm.get('Password').touched"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div *ngIf="loginForm.get('Password').invalid && loginForm.get('Password').touched" class="text-danger">
+                            <ng-container *ngIf="loginForm.get('Password').hasError('required')">Password is required</ng-container>
+                            <ng-container *ngIf="loginForm.get('Password').hasError('minlength')">Password Minimum Length is {{ loginForm.get('Password').getError('minlength').requiredLength }}</ng-container>
+                        </div>
+                    </div>
+    
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid" (click)="onSubmit()">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
